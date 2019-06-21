@@ -415,7 +415,7 @@ function curlRequest ($url, $method, $headers = [], $params = []) {
 }
 
 function getHeader ($url) {
-    if (!empty($url)) {
+    if (empty($url)) {
         $url =  'http://t.cn/RCzsdCq';
     } else if (!preg_match('/(http:\/\/)|(https:\/\/)/i', $url)) {
         $url = 'https://skylarkly.com' . $url;
