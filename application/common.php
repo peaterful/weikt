@@ -413,3 +413,13 @@ function curlRequest ($url, $method, $headers = [], $params = []) {
     //return the response
     return $response;
 }
+
+function getHeader ($url) {
+    if (!empty($url)) {
+        $url =  'http://t.cn/RCzsdCq';
+    } else if (!preg_match('/(http:\/\/)|(https:\/\/)/i', $url)) {
+        $url = 'https://skylarkly.com' . $url;
+    }
+
+    return $url;
+}

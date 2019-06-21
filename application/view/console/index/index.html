@@ -13,7 +13,7 @@
         <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
             <li class="layui-nav-item" lay-unselect="">
                 <a href="javascript:;">
-                    <img src="{if condition="$userinfo['headimgurl']"}{$userinfo['headimgurl']}{else}http://t.cn/RCzsdCq{/if}" class="layui-nav-img">
+                    <img src="{:getHeader($userinfo['headimgurl'])}" class="layui-nav-img">
                     <cite>{$userinfo['name']}</cite>
                     <span class="layui-nav-more"></span>
                 </a>
@@ -121,7 +121,7 @@
         if (document.cookie && document.cookie != '') {
             var cookies = document.cookie.split(';');
             for (var i = 0; i < cookies.length; i++) {
-                var cookie = jQuery.trim(cookies[i]);
+                var cookie = trim(cookies[i]);
                 // Does this cookie string begin with the name we want?
                 if (cookie.substring(0, name.length + 1) == (name + '=')) {
                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
