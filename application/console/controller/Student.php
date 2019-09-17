@@ -22,13 +22,6 @@ class Student extends Base
      */
     public function index()
     {
-        $list = $this->model->getList();var_dump($list->toArray());die;
-
-//        foreach ($list as $k => $v) {
-//            $v['nickname'] = base64_decode($v['nickname']);
-//
-//            $this->model->where('id', $v['id'])->update($v);
-//        }
 
         return $this->fetch('console/student/index');
 
@@ -65,6 +58,10 @@ class Student extends Base
             }
 
             $data = $this->model->getTablePageList($where, $page, $limit);
+
+            foreach ($data as $k => $v) {
+                $this->model->where('id', $v['id'])->update($v);
+            }
 
             if(!empty($data['data'])){
                 return json(['code' => 200, 'msg' => '列表获取成功', 'count' => $data['total'], 'data' => $data['data']]);
