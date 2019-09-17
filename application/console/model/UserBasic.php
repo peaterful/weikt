@@ -21,7 +21,12 @@ class UserBasic extends Model {
             ->order($order)
             ->paginate($limit,false,[
                 'page' => $page,
-            ])->toArray();
+            ])
+            ->each(function($item) {
+
+                $item->nickname = base64_decode($item->nickname);
+            })
+            ->toArray();
 
         return $res;
     }
