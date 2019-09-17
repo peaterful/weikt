@@ -58,10 +58,10 @@ class Student extends Base
             }
 
             $data = $this->model->getTablePageList($where, $page, $limit);
-
-            foreach ($data as $k => $v) {
-                $this->model->save($v, ['id' => $v['id']]);
-            }
+var_dump($data);
+//            foreach ($data as $k => $v) {
+//                $this->model->save($v, ['id' => $v['id']]);
+//            }
 
             if(!empty($data['data'])){
                 return json(['code' => 200, 'msg' => '列表获取成功', 'count' => $data['total'], 'data' => $data['data']]);
