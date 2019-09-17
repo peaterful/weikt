@@ -24,11 +24,11 @@ class Student extends Base
     {
         $list = $this->model->getList()->toArray();var_dump($list);
 
-        foreach ($list as $k => $v) {
-            $v['nickname'] = base64_decode($v['nickname']);
-
-            $this->model->where('id', $v['id'])->update($v);
-        }
+//        foreach ($list as $k => $v) {
+//            $v['nickname'] = base64_decode($v['nickname']);
+//
+//            $this->model->where('id', $v['id'])->update($v);
+//        }
 
         return $this->fetch('console/student/index');
 
