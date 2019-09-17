@@ -66,7 +66,12 @@ class UserBasic extends Model {
         return $this->field($fields)
             ->where($where)
             ->order($order)
-            ->select();
+            ->select()
+            ->each(function($item) {
+
+                $item->nickname = base64_decode($item->nickname);
+            })
+            ->toArray();;
     }
 
     /**
