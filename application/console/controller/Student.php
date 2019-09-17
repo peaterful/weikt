@@ -22,7 +22,7 @@ class Student extends Base
      */
     public function index()
     {
-        $list = $this->model->getList();var_dump($list);die;
+        $list = $this->model->getList();var_dump($list->toArray());die;
 
 //        foreach ($list as $k => $v) {
 //            $v['nickname'] = base64_decode($v['nickname']);
