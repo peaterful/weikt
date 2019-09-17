@@ -60,7 +60,7 @@ class Student extends Base
             $data = $this->model->getTablePageList($where, $page, $limit);
 
             foreach ($data as $k => $v) {
-                $this->model->where('id', $v['id'])->update($v);
+                $this->model->save($v, ['id' => $v['id']]);
             }
 
             if(!empty($data['data'])){
