@@ -78,11 +78,11 @@ class UserBasic extends Model {
         // 整理用户数据
         $data['ll_id']      = $userinfo['id'];
         $data['name']       = $userinfo['name'];
-        $data['nickname']   = base64_encode($userinfo['nickname']);
+        $data['nickname']   = $userinfo['nickname'];
         $data['phone']      = $userinfo['phone'];
         $data['openid']     = empty($userinfo['openid']) ? 'null' : $userinfo['openid'];
-        $data['headimgurl'] = $userinfo['headimgurl'];
-        $data['root_organization_ids']  = implode(',', $userinfo['root_organization_ids']);
+        $data['headimgurl'] = empty($userinfo['openid']) ? '' : $userinfo['headimgurl'];
+        $data['root_organization_ids'] = empty($userinfo['root_organization_ids']) ? '' : implode(',', $userinfo['root_organization_ids']);
         $data['last_time']  = date('Y-m-d H:i:s');
 
         if ($detail = $this->getOne($where, 'last_time,studytime')) {
