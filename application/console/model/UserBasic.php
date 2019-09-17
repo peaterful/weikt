@@ -70,8 +70,7 @@ class UserBasic extends Model {
             ->each(function($item) {
 
                 $item->nickname = base64_decode($item->nickname);
-            })
-            ->toArray();;
+            });
     }
 
     /**
