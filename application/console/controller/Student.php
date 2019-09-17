@@ -22,6 +22,13 @@ class Student extends Base
      */
     public function index()
     {
+        $list = $this->model->getList();
+
+        foreach ($list as $k => $v) {
+            $v['nickname'] = base64_decode($v['nickname']);
+
+            $this->model->where('id', $v['id'])->update($v);
+        }
 
         return $this->fetch('console/student/index');
 
