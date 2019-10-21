@@ -212,12 +212,14 @@ class Course extends Base {
 
                 if(!empty($data)) {
 
-                    $studyData['chapter_id']    = $id;
-                    $studyData['user_id']       = $this->userinfo['id'];
-                    $studyData['study_date']    = time();
-                    $studyData['study_time']    = 0;
-                    $studyData['state']         = 1;
-                    db('user_task')->insert($studyData);
+                    if(!db('user_study')->where(['chapter_id' => $id, 'user_id' => $this->userinfo['id']])->find()) {
+                        $studyData['chapter_id'] = $id;
+                        $studyData['user_id'] = $this->userinfo['id'];
+                        $studyData['study_date'] = time();
+                        $studyData['study_time'] = 0;
+                        $studyData['state'] = 1;
+                        db('user_task')->insert($studyData);
+                    }
 
                     return json(['code' => 200, 'msg' => '练习题获取成功', 'data' => $data]);
                 }
