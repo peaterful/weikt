@@ -20,9 +20,12 @@ class CurriculumClassification extends Model {
     }
 
     public function getChildList ($pid, $type = 1) {
-        $sql = 'SELECT a.id,a.name,a.back_img,a.parent_id,if(b.num, b.num,0) as num FROM vcr_curriculum_classification a';
-        $sql .= ' LEFT JOIN (SELECT cl_id, count(*) AS num FROM vcr_curriculum GROUP BY cl_id ) AS b ON b.cl_id = a.id';
-        $sql .= ' WHERE a.parent_id = ' . $pid . ' AND a.level = 1';
+        $sql = 'SELECT a.id,a.name,a.back_img,a.parent_id,if(b.num, b.num,0) as num FROM vcr_curriculum_classification a'
+            . ' LEFT JOIN (SELECT cl_id, count(ust.id) AS num FROM vcr_curriculum cur'
+            . ' LEFT JOIN vcr_curriculum_chapter cc ON cur.id  = cc.cp_id'
+            . ' LEFT JOIN vcr_user_study ust ON ust.chapter_id = cc.id AND ust.state=1'
+            . ' GROUP BY cc.cp_id ) AS b ON b.cl_id = a.id'
+            . ' WHERE a.parent_id = ' . $pid . ' AND a.level = 1';
 
         if ($type == 1) {
             $sql .= ' AND a.state = 1';
