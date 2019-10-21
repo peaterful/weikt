@@ -267,13 +267,6 @@ class Course extends Base {
                             }
                         }
 
-                        $studyData['chapter_id']    = $id;
-                        $studyData['user_id']       = $this->userinfo['id'];
-                        $studyData['study_date']    = time();
-                        $studyData['study_time']    = 0;
-                        $studyData['state']         = 1;
-                        db('user_study')->insert($studyData);
-
                         return json(['code' => 200, 'msg' => '测验题获取成功', 'data' => $cha_data]);
                     }
                     return json(['code' => 404, 'msg' => '没有找到该章节对应的测验题记录', 'data' => []]);
