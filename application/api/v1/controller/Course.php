@@ -212,6 +212,13 @@ class Course extends Base {
 
                 if(!empty($data)) {
 
+                    $studyData['chapter_id']    = $id;
+                    $studyData['user_id']       = $this->userinfo['id'];
+                    $studyData['study_date']    = time();
+                    $studyData['study_time']    = 0;
+                    $studyData['state']         = 1;
+                    db('user_task')->insert($studyData);
+
                     return json(['code' => 200, 'msg' => '练习题获取成功', 'data' => $data]);
                 }
                 return json(['code' => 404, 'msg' => '没有找到该章节下的练习题', 'data' => []]);
@@ -259,6 +266,13 @@ class Course extends Base {
                                 $cha_data['list'][$k]['topic'] = html_entity_decode($v['topic']);
                             }
                         }
+
+                        $studyData['chapter_id']    = $id;
+                        $studyData['user_id']       = $this->userinfo['id'];
+                        $studyData['study_date']    = time();
+                        $studyData['study_time']    = 0;
+                        $studyData['state']         = 1;
+                        db('user_task')->insert($studyData);
 
                         return json(['code' => 200, 'msg' => '测验题获取成功', 'data' => $cha_data]);
                     }
