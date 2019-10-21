@@ -272,7 +272,7 @@ class Course extends Base {
                         $studyData['study_date']    = time();
                         $studyData['study_time']    = 0;
                         $studyData['state']         = 1;
-                        db('user_task')->insert($studyData);
+                        db('user_study')->insert($studyData);
 
                         return json(['code' => 200, 'msg' => '测验题获取成功', 'data' => $cha_data]);
                     }
@@ -339,7 +339,7 @@ class Course extends Base {
                                     $workDate['content']    = json_encode(['url' => $result['data']]);
                                     $workDate['state']      = 2;
 
-                                    if(!db('user_task')->insert($workDate)) {
+                                    if(!db('user_study')->insert($workDate)) {
                                         return json(['code' => 403, 'msg' => '抱歉！作业提交失败', 'data' => []]);
                                     }
 
