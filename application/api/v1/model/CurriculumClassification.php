@@ -24,7 +24,7 @@ class CurriculumClassification extends Model {
             . ' LEFT JOIN (SELECT cl_id, count(ust.id) AS num FROM vcr_curriculum cur'
             . ' LEFT JOIN vcr_curriculum_chapter cc ON cur.id  = cc.cp_id'
             . ' LEFT JOIN vcr_user_study ust ON ust.chapter_id = cc.id AND ust.state=1'
-            . ' GROUP BY cc.cp_id ) AS b ON b.cl_id = a.id'
+            . ' GROUP BY cur.cl_id) AS b ON b.cl_id = a.id'
             . ' WHERE a.parent_id = ' . $pid . ' AND a.level = 1';
 
         if ($type == 1) {
