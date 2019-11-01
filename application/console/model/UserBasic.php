@@ -78,7 +78,7 @@ class UserBasic extends Model {
         // 整理用户数据
         $data['ll_id']      = $userinfo['id'];
         $data['name']       = $userinfo['name'];
-        $data['nickname']   = $userinfo['nickname'];
+        $data['nickname']   = empty($userinfo['nickname']) ? '' : $userinfo['nickname'];
         $data['phone']      = $userinfo['phone'];
         $data['openid']     = empty($userinfo['openid']) ? 'null' : $userinfo['openid'];
         $data['headimgurl'] = empty($userinfo['openid']) ? '' : $userinfo['headimgurl'];
